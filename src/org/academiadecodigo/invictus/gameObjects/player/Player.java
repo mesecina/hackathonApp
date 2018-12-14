@@ -18,6 +18,7 @@ public class Player implements Character {
     private int jumpSize;
     private boolean shotFired;
     private boolean jumping;
+    private boolean falling;
     private int jumpFase;
 
     public Player() {
@@ -41,6 +42,12 @@ public class Player implements Character {
 
     @Override
     public void move() {
+
+        if(falling){
+            representation.translate(0, jumpSize);
+        }
+
+
         if (jumping) {
             if(jumpFase == 70){
                 jumping = false;
@@ -84,6 +91,7 @@ public class Player implements Character {
     }
 
 
+
     @Override
     public int getX() {
         return representation.getX();
@@ -104,5 +112,19 @@ public class Player implements Character {
         return representation.getHeight();
     }
 
+    public boolean isFalling() {
+        return falling;
+    }
 
+    public void setFalling(boolean falling) {
+        this.falling = falling;
+    }
+
+    public boolean isJumping() {
+        return jumping;
+    }
+
+    public void setJumping(boolean jumping) {
+        this.jumping = jumping;
+    }
 }

@@ -53,6 +53,7 @@ public class Game {
             @Override
             public void run() {
                 inputProcessing();
+                Collision.playerFall(player, screenBlocks);
                 player.move();
                 moveBlocks();
                 //moveEnemies();

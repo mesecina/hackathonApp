@@ -1,5 +1,6 @@
 package org.academiadecodigo.invictus;
 
+import org.academiadecodigo.invictus.gameObjects.blocks.BaseBlock;
 import org.academiadecodigo.invictus.gameObjects.player.Player;
 import org.academiadecodigo.invictus.gameObjects.projectiles.Projectile;
 
@@ -25,6 +26,19 @@ public class Collision {
                     projectile.dispose();
                     enemy.die();
                 }
+            }
+        }
+    }
+
+    public static void playerFall(Player player, List<BaseBlock[]> screenBlocks) {
+        for (int i = 0; i < screenBlocks.size(); i++) {
+            for (int j = 0; j < screenBlocks.get(i).length; j++) {
+                if (screenBlocks.get(i)[j].getX() < player.getX() && screenBlocks.get(i)[j].getX() + screenBlocks.get(i)[j].getWidth() > player.getX()) {
+                    return;
+                }
+            }
+            if(!player.isJumping()) {
+                player.setFalling(true);
             }
         }
     }
