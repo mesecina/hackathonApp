@@ -2,6 +2,10 @@ package org.academiadecodigo.invictus.gameObjects.enemies;
 
 public class JumpingEnemy extends Enemy {
 
+    public JumpingEnemy() {
+        super();
+    }
+
     @Override
     public void die() {
         super.die();

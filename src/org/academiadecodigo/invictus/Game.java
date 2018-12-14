@@ -1,6 +1,7 @@
 package org.academiadecodigo.invictus;
 
 import org.academiadecodigo.invictus.factories.BlockFactory;
+import org.academiadecodigo.invictus.factories.EnemyFactory;
 import org.academiadecodigo.invictus.gameObjects.blocks.BaseBlock;
 import org.academiadecodigo.invictus.gameObjects.player.Player;
 import org.academiadecodigo.invictus.keyboard.Key;
@@ -41,6 +42,8 @@ public class Game {
         for (int i = 0; i < 3; i++) {
             blocks.add(BlockFactory.getBlockSet(15));
         }
+
+        EnemyFactory.getEnemies();
 
     }
 
@@ -112,6 +115,10 @@ public class Game {
             }
 
         }
+    }
+
+    private void moveEnemies(){
+
     }
 
 }
