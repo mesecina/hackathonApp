@@ -4,6 +4,7 @@ import org.academiadecodigo.invictus.factories.BlockFactory;
 import org.academiadecodigo.invictus.factories.EnemyFactory;
 import org.academiadecodigo.invictus.gameObjects.blocks.BaseBlock;
 import org.academiadecodigo.invictus.gameObjects.player.Player;
+import org.academiadecodigo.invictus.gameObjects.projectiles.Projectile;
 import org.academiadecodigo.invictus.keyboard.Key;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -60,7 +61,7 @@ public class Game {
                 player.move();
                 moveBlocks();
                 //moveEnemies();
-                //moveProjectiles();
+                moveProjectiles();
                 //Collision.detect(enemies, player, player.getProjectiles());
 
                 if (player.isDead()) {
@@ -114,6 +115,12 @@ public class Game {
                 recycledBlock[i].getRepresentation().translate(WIDTH + 15 * BaseBlock.WIDTH + PADDING,0);
             }
 
+        }
+    }
+
+    private void moveProjectiles() {
+        for(Projectile projectile : player.getProjectiles()) {
+            projectile.move();
         }
     }
 

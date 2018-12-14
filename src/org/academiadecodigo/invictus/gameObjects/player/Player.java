@@ -2,9 +2,13 @@ package org.academiadecodigo.invictus.gameObjects.player;
 
 import org.academiadecodigo.invictus.Character;
 import org.academiadecodigo.invictus.Game;
+import org.academiadecodigo.invictus.gameObjects.projectiles.Projectile;
 import org.academiadecodigo.invictus.keyboard.Key;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player implements Character {
 
@@ -20,19 +24,31 @@ public class Player implements Character {
     private boolean jumping;
     private boolean falling;
     private int jumpFase;
+    private long lastShot;
+    private List<Projectile> projectiles;
 
     public Player() {
+        projectiles = new CopyOnWriteArrayList<>();
         representation = new Rectangle(Game.PADDING + Game.HEIGHT / 4 + WIDTH / 2, Game.HEIGHT - 150 - HEIGHT, WIDTH, HEIGHT);
         representation.setColor(Color.BLUE);
         representation.fill();
         lives = 3;
         jumpSize = 9;
         dead = false;
+        lastShot = 0;
+    }
+
+    public void shoot() {
+        if(System.currentTimeMillis() > lastShot + 1000L) {
+            projectiles.add(new Projectile(representation.getX() + WIDTH, representation.getY() + HEIGHT/2 - 5));
+            lastShot = System.currentTimeMillis();
+        }
     }
 
     @Override
     public void die() {
-
+        dead = true;
+        representation.delete();
     }
 
     @Override
@@ -76,10 +92,6 @@ public class Player implements Character {
                 shoot();
                 break;
         }
-    }
-
-    public void shoot() {
-
     }
 
     public void up() {
@@ -126,5 +138,9 @@ public class Player implements Character {
 
     public void setJumping(boolean jumping) {
         this.jumping = jumping;
+    }
+
+    public List<Projectile> getProjectiles() {
+        return projectiles;
     }
 }
