@@ -1,26 +1,22 @@
 package org.academiadecodigo.invictus.gameObjects.player;
 
-import org.academiadecodigo.invictus.Character;
+import org.academiadecodigo.invictus.gameObjects.Character;
 import org.academiadecodigo.invictus.Game;
 import org.academiadecodigo.invictus.gameObjects.projectiles.Projectile;
 import org.academiadecodigo.invictus.keyboard.Key;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player implements Character {
 
-
-    private Rectangle representation;
-    private int lives;
+    private Picture representation;
     private boolean dead;
-    public static final int WIDTH = 50;
-    public static final int HEIGHT = 50;
+    private static final int WIDTH = 50;
+    private static final int HEIGHT = 50;
 
     private int jumpSize;
-    private boolean shotFired;
     private boolean jumping;
     private boolean falling;
     private int jumpFase;
@@ -29,18 +25,16 @@ public class Player implements Character {
 
     public Player() {
         projectiles = new CopyOnWriteArrayList<>();
-        representation = new Rectangle(Game.PADDING + Game.HEIGHT / 4 + WIDTH / 2, Game.HEIGHT - 150 - HEIGHT, WIDTH, HEIGHT);
-        representation.setColor(Color.BLUE);
-        representation.fill();
-        lives = 3;
+        representation = new Picture(Game.PADDING + Game.HEIGHT / 4 + WIDTH / 2, Game.HEIGHT - 115 - 150, "player1.png");
+        representation.draw();
         jumpSize = 9;
         dead = false;
         lastShot = 0;
     }
 
-    public void shoot() {
-        if(System.currentTimeMillis() > lastShot + 1000L) {
-            projectiles.add(new Projectile(representation.getX() + WIDTH, representation.getY() + HEIGHT/2 - 5));
+    private void shoot() {
+        if (System.currentTimeMillis() > lastShot + 1000L) {
+            projectiles.add(new Projectile(representation.getX() + WIDTH, representation.getY() + HEIGHT / 2 + 10));
             lastShot = System.currentTimeMillis();
         }
     }
@@ -53,19 +47,18 @@ public class Player implements Character {
 
     @Override
     public boolean isDead() {
-        return false;
+        return dead;
     }
 
     @Override
     public void move() {
 
-        if(falling){
+        if (falling) {
             representation.translate(0, jumpSize);
         }
 
-
         if (jumping) {
-            if(jumpFase == 70){
+            if (jumpFase == 70) {
                 jumping = false;
                 jumpFase = 0;
                 return;
@@ -84,6 +77,7 @@ public class Player implements Character {
     }
 
     public void act(Key key) {
+
         switch (key) {
             case UP:
                 up();
@@ -94,15 +88,14 @@ public class Player implements Character {
         }
     }
 
-    public void up() {
+    private void up() {
+
         if (jumping) {
             return;
         }
-        //representation.translate(0, -5);
+
         jumping = true;
     }
-
-
 
     @Override
     public int getX() {
@@ -124,20 +117,16 @@ public class Player implements Character {
         return representation.getHeight();
     }
 
-    public boolean isFalling() {
-        return falling;
-    }
-
     public void setFalling(boolean falling) {
         this.falling = falling;
     }
 
-    public boolean isJumping() {
-        return jumping;
+    public Picture getRepresentation() {
+        return representation;
     }
 
-    public void setJumping(boolean jumping) {
-        this.jumping = jumping;
+    public boolean isJumping() {
+        return jumping;
     }
 
     public List<Projectile> getProjectiles() {

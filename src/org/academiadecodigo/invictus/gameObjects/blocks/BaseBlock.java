@@ -1,29 +1,24 @@
 package org.academiadecodigo.invictus.gameObjects.blocks;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class BaseBlock extends Block {
 
-    private Rectangle representation;
-    public static final int WIDTH = 100;
+    private Picture representation;
+    public static final int WIDTH = 133;
     public static final int HEIGHT = 300;
-    private int x;
-    private int y;
-
+    private int speed;
 
 
     public BaseBlock(int x, int y) {
-        representation = new Rectangle(x, y, WIDTH, HEIGHT);
-        representation.setColor(Color.RED);
-        representation.fill();
-        this.x = x;
-        this.y = y;
+        representation = new Picture(x, y, "platform.png");
+        representation.draw();
+        speed = 10;
     }
 
     @Override
     public void move() {
-        representation.translate(-10, 0);
+        representation.translate(-speed, 0);
     }
 
     @Override
@@ -46,7 +41,8 @@ public class BaseBlock extends Block {
         return representation.getHeight();
     }
 
-    public Rectangle getRepresentation() {
+    public Picture getRepresentation() {
         return representation;
     }
+
 }

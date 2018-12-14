@@ -4,9 +4,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 
 public enum Key {
     UP(KeyboardEvent.KEY_UP),
-    DOWN(KeyboardEvent.KEY_DOWN),
-    LEFT(KeyboardEvent.KEY_LEFT),
-    RIGHT(KeyboardEvent.KEY_RIGHT),
+    RESTART(KeyboardEvent.KEY_R),
     SPACE(KeyboardEvent.KEY_SPACE);
 
     public final int id;

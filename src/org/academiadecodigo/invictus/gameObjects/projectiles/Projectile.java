@@ -1,19 +1,16 @@
 package org.academiadecodigo.invictus.gameObjects.projectiles;
 
-import org.academiadecodigo.invictus.Movable;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.invictus.Game;
+import org.academiadecodigo.invictus.gameObjects.Movable;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Projectile implements Movable {
 
-    private Rectangle representation;
-    private boolean dead;
+    private Picture representation;
 
     public Projectile(int x, int y) {
-        dead = false;
-        representation = new Rectangle(x, y, 10 ,10);
-        representation.setColor(Color.YELLOW);
-        representation.fill();
+        representation = new Picture(x, y, "guitar1.png");
+        representation.draw();
     }
 
     @Override
@@ -22,7 +19,7 @@ public class Projectile implements Movable {
     }
 
     public void dispose() {
-        dead = true;
+        representation.translate(0, -Game.HEIGHT);
         representation.delete();
     }
 
@@ -35,7 +32,6 @@ public class Projectile implements Movable {
     public int getY() {
         return representation.getY();
     }
-
 
     @Override
     public int getWidth() {

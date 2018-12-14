@@ -1,4 +1,4 @@
-package org.academiadecodigo.invictus;
+package org.academiadecodigo.invictus.gameObjects;
 
 public interface Character extends Movable {
 

@@ -8,12 +8,11 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Input implements KeyboardHandler {
 
-    private Keyboard keyboard;
     private Game game;
 
     public Input(Game game) {
         this.game = game;
-        keyboard = new Keyboard(this);
+        Keyboard keyboard = new Keyboard(this);
 
         KeyboardEvent jump = new KeyboardEvent();
         jump.setKey(KeyboardEvent.KEY_UP);
@@ -34,6 +33,11 @@ public class Input implements KeyboardHandler {
         shootReleased.setKey(KeyboardEvent.KEY_SPACE);
         shootReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboard.addEventListener(shootReleased);
+
+        KeyboardEvent restart = new KeyboardEvent();
+        restart.setKey(KeyboardEvent.KEY_R);
+        restart.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(restart);
 
     }
 

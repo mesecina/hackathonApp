@@ -1,39 +1,67 @@
 package org.academiadecodigo.invictus.gameObjects.enemies;
 
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 public class MovingEnemy extends Enemy {
+
+    private boolean dead;
+    private boolean falling;
+    private int fallSize = 15;
+
+    private int speed;
+
+    public MovingEnemy() {
+        super();
+        dead = false;
+
+        speed = 15;
+    }
 
     @Override
     public void die() {
-        super.die();
+        dead = true;
     }
 
     @Override
     public boolean isDead() {
-        return super.isDead();
+        return dead;
     }
 
     @Override
     public void move() {
-        super.move();
+
+        if (falling) {
+            representation.translate(0, fallSize);
+        }
+
+        representation.translate(-speed, 0);
     }
 
     @Override
     public int getX() {
-        return 0;
+        return representation.getX();
     }
 
     @Override
     public int getY() {
-        return 0;
+        return representation.getY();
     }
 
     @Override
     public int getWidth() {
-        return 0;
+        return representation.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        return representation.getHeight();
+    }
+
+    public Picture getRepresentation() {
+        return representation;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }
