@@ -1,28 +1,9 @@
-package org.academiadecodigo.invictus;
+package org.academiadecodigo.invictus.gameObjects.blocks;
 
-public class Player implements Character {
-
-
-    @Override
-    public void die() {
-
-    }
-
-    @Override
-    public boolean isDead() {
-        return false;
-    }
+public class AirBlock extends Block {
 
     @Override
     public void move() {
-
-    }
-
-    public void shoot(){
-
-    }
-
-    public void jump(){
 
     }
 
@@ -45,5 +26,4 @@ public class Player implements Character {
     public int getHeight() {
         return 0;
     }
-
 }

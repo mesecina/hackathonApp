@@ -1,4 +1,6 @@
-package org.academiadecodigo.invictus;
+package org.academiadecodigo.invictus.factories;
+
+import org.academiadecodigo.invictus.Character;
 
 import java.util.List;
 

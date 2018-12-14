@@ -1,5 +1,8 @@
 package org.academiadecodigo.invictus;
 
+import org.academiadecodigo.invictus.gameObjects.player.Player;
+import org.academiadecodigo.invictus.gameObjects.projectiles.Projectile;
+
 import java.util.List;
 
 public class Collision {

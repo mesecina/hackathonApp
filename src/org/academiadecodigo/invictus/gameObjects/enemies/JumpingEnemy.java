@@ -1,14 +1,20 @@
-package org.academiadecodigo.invictus;
+package org.academiadecodigo.invictus.gameObjects.enemies;
 
-public class Projectile implements Movable {
+public class JumpingEnemy extends Enemy {
+
+    @Override
+    public void die() {
+        super.die();
+    }
+
+    @Override
+    public boolean isDead() {
+        return super.isDead();
+    }
 
     @Override
     public void move() {
-
-    }
-
-    public void dispose() {
-
+        super.move();
     }
 
     @Override
@@ -20,7 +26,6 @@ public class Projectile implements Movable {
     public int getY() {
         return 0;
     }
-
 
     @Override
     public int getWidth() {

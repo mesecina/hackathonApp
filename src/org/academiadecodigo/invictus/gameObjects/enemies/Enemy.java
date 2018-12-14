@@ -1,6 +1,8 @@
-package org.academiadecodigo.invictus;
+package org.academiadecodigo.invictus.gameObjects.enemies;
 
-public abstract class Enemy implements Character{
+import org.academiadecodigo.invictus.Character;
+
+public abstract class Enemy implements Character {
 
     @Override
     public void die() {
